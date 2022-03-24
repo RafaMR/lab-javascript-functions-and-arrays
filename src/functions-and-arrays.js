@@ -1,19 +1,54 @@
 // Iteration #1: Find the maximum
-function maxOfTwoNumbers() {}
+function maxOfTwoNumbers(num1, num2) {
+  if (num1 >num2) {
+    return num1;
+  } else if(num2 > num1){
+    return num2;
+  } else{
+    return num1;
+  }
+}
 
 
 
 // Iteration #2: Find longest word
 const words = ['mystery', 'brother', 'aviator', 'crocodile', 'pearl', 'orchard', 'crackpot'];
 
-function findLongestWord() {}
+function findLongestWord(words) {
+  
+  let longestWord = ' ';
 
+  if(words.length === 0){
+    return null;
+  }
 
+   words.forEach (function(element) {
+    if (element.length > longestWord.length){
+      longestWord = element
+    }
+   })
+
+    return longestWord;
+}
 
 // Iteration #3: Calculate the sum
 const numbers = [6, 12, 1, 18, 13, 16, 2, 1, 8, 10];
 
-function sumNumbers() {}
+
+function sumNumbers(numbers) {
+  
+  let sum = 0;
+
+  if(numbers.length === 0){
+    return 0;
+  }
+
+   numbers.forEach (function(element) {
+     sum += element
+    })
+
+    return sum;
+}
 
 
 
@@ -22,20 +57,86 @@ function sum() {}
 
 
 
+
 // Iteration #4: Calculate the average
+
 // Level 1: Array of numbers
+
 const numbersAvg = [2, 6, 9, 10, 7, 4, 1, 9];
 
-function averageNumbers() {}
+function averageNumbers(numbersAvg) {
+
+  let sum = 0;
+  let avg = 0;
+
+  if(numbersAvg.length === 0){
+    return null;
+  }
+  
+   numbersAvg.forEach (function(element) {
+     sum += element
+     avg = sum / numbersAvg.length
+    })
+  
+  return avg;
+  
+  }
 
 
 // Level 2: Array of strings
 const wordsArr = ['seat', 'correspond', 'linen', 'motif', 'hole', 'smell', 'smart', 'chaos', 'fuel', 'palace'];
 
-function averageWordLength() { }
+function averageWordLength (words) {
+
+  if (words.length === 0){
+    return null;
+  }
+
+  let sum = 0;
+  let avg = 0;
+
+  words.forEach (function(element) {
+     
+     sum += element.length
+     avg = (sum /words.length)
+    })
+
+
+  return avg;
+  
+  }
+
 
 // Bonus - Iteration #4.1
-function avg() {}
+function avg(arr) {
+
+  let sum = 0
+  
+  if (arr.length === 0) {
+      return null;
+    }
+  
+  for (let i = 0; i < arr.length; i++) {
+        
+        if (typeof arr[i] === 'string') {
+          sum += arr[i].length
+  
+        } else if (typeof arr[i] === 'number') {
+          sum += arr[i]
+  
+        } else if (typeof arr[i] === 'boolean') {
+            if (arr[i] == true) { sum += 1 }
+        }
+        
+  }
+  
+  return sum/arr.length
+  
+  }
+  
+  
+
+
 
 // Iteration #5: Unique arrays
 const wordsUnique = [
@@ -52,15 +153,52 @@ const wordsUnique = [
   'bring'
 ];
 
-function uniquifyArray() {}
+function uniquifyArray (words) {
+
+
+  if(words.length === 0){
+     return null;
+   }
+ 
+   arr = [];
+ 
+   
+   for (i = 0; i < words.length; i++) {
+     
+     let a = words[i]
+ 
+     if (arr.indexOf(a) === -1) {
+       arr.push(a)
+     }
+ 
+ 
+   }
+ 
+   return arr
+ }
+ 
+ 
 
 
 
 // Iteration #6: Find elements
 const wordsFind = ['machine', 'subset', 'trouble', 'starting', 'matter', 'eating', 'truth', 'disobedience'];
 
-function doesWordExist() {}
+function doesWordExist(words, search) {
 
+  if (words.length === 0) {
+    return null;
+  }
+
+  for (let i = 0; i < words.length; i++) {
+
+    if (words[i]=== search) {
+
+      return true;
+    }
+  }
+  return false;
+}
 
 
 // Iteration #7: Count repetition
@@ -78,7 +216,25 @@ const wordsCount = [
   'matter'
 ];
 
-function howManyTimes() {}
+function howManyTimes (words, search) {
+
+if (words.length === 0) {
+    return 0;
+  }
+
+let sum = 0;
+
+for (let i = 0; i < words.length; i++) {
+    
+    if (words[i] === search) {
+      sum += 1
+    }
+
+}
+
+return sum;
+
+}
 
 
 
@@ -106,7 +262,50 @@ const matrix = [
   [1, 70, 54, 71, 83, 51, 54, 69, 16, 92, 33, 48, 61, 43, 52, 1, 89, 19, 67, 48]
 ];
 
-function greatestProduct() {}
+function greatestProduct(matrix) {
+  let max = 0,
+    n = 4;
+  let result;
+
+  // iterate the rows.
+  for (let i = 0; i < n; i++) {
+    // iterate the columns.
+    for (let j = 0; j < n; j++) {
+      // check the maximum product
+      // in horizontal row.
+      if (j - 3 >= 0) {
+        result = matrix[i][j] * matrix[i][j - 1] * matrix[i][j - 2] * matrix[i][j - 3];
+        if (max < result) max = result;
+      }
+
+      // check the maximum product
+      // in vertical row.
+      if (i - 3 >= 0) {
+        result = matrix[i][j] * matrix[i - 1][j] * matrix[i - 2][j] * matrix[i - 3][j];
+
+        if (max < result) max = result;
+      }
+
+      // check the maximum product in
+      // diagonal (going through down - right)
+      if (i - 3 >= 0 && j - 3 >= 0) {
+        result = matrix[i][j] * matrix[i - 1][j - 1] * matrix[i - 2][j - 2] * matrix[i - 3][j - 3];
+
+        if (max < result) max = result;
+      }
+
+      // check the maximum product in
+      // diagonal (going through up - right)
+      if (i - 3 >= 0 && j - 1 <= 0) {
+        result = matrix[i][j] * matrix[i - 1][j + 1] * matrix[i - 2][j + 2] * matrix[i - 3][j + 3];
+
+        if (max < result) max = result;
+      }
+    }
+  }
+
+  return max;
+}
 
 
 
